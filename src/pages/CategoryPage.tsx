@@ -113,7 +113,7 @@ export function CategoryPage() {
             slug: item.slug,
             thumb_url: item.thumb_url,
             poster_url: item.poster_url,
-            year: parseInt(item.time.match(/\d{4}/)?.[0] || '0', 10),
+            /* year: parseInt(item.time.match(/\d{4}/)?.[0] || '0', 10), */
             category: categoryData,
             type: item.total_episodes > 1 ? 'series' : 'single',
             sub_docquyen: false,

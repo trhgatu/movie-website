@@ -1,5 +1,5 @@
-import { useMemo } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useMemo, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { cn } from "../lib/utils";
 import { Button } from "./ui/button";
@@ -20,6 +20,12 @@ export function Pagination({
   onPageChange,
 }: PaginationProps) {
   const location = useLocation();
+  const navigate = useNavigate();
+
+  // Scroll to top when page changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [currentPage]);
 
   // Determine link based on current location
   const getPageUrl = (page: number) => {
@@ -73,11 +79,16 @@ export function Pagination({
     }
   };
 
+  // Custom navigation handler with scroll to top
+  const handleNavigate = (page: number) => {
+    navigate(getPageUrl(page));
+  };
+
   if (totalPages <= 1) return null;
 
   return (
     <nav className={cn("flex justify-center", className)} aria-label="Pagination">
-      <ul className="flex items-center gap-1">
+      <ul className="flex items-center gap-1.5">
         {/* Previous Page */}
         <li>
           {currentPage > 1 ? (
@@ -85,24 +96,28 @@ export function Pagination({
               <Button
                 variant="outline"
                 size="icon"
-                className="h-9 w-9"
+                className="h-9 w-9 transition-all duration-200 hover:bg-primary/10 hover:border-primary hover:-translate-x-0.5"
                 onClick={() => handleClick(currentPage - 1)}
                 aria-label="Previous page"
               >
                 <FiChevronLeft className="h-4 w-4" />
               </Button>
             ) : (
-              <Button asChild variant="outline" size="icon" className="h-9 w-9">
-                <Link to={getPageUrl(currentPage - 1)} aria-label="Previous page">
-                  <FiChevronLeft className="h-4 w-4" />
-                </Link>
+              <Button
+                variant="outline"
+                size="icon"
+                className="h-9 w-9 transition-all duration-200 hover:bg-primary/10 hover:border-primary hover:-translate-x-0.5"
+                onClick={() => handleNavigate(currentPage - 1)}
+                aria-label="Previous page"
+              >
+                <FiChevronLeft className="h-4 w-4" />
               </Button>
             )
           ) : (
             <Button
               variant="outline"
               size="icon"
-              className="h-9 w-9 opacity-50"
+              className="h-9 w-9 opacity-50 cursor-not-allowed"
               disabled
               aria-label="Previous page"
             >
@@ -130,7 +145,12 @@ export function Pagination({
                 <Button
                   variant={isActive ? "default" : "outline"}
                   size="icon"
-                  className="h-9 w-9"
+                  className={cn(
+                    "h-9 w-9 transition-all duration-200",
+                    isActive
+                      ? "shadow-md transform scale-105"
+                      : "hover:bg-primary/10 hover:border-primary hover:scale-105"
+                  )}
                   onClick={() => handleClick(page)}
                   aria-current={isActive ? "page" : undefined}
                 >
@@ -138,17 +158,18 @@ export function Pagination({
                 </Button>
               ) : (
                 <Button
-                  asChild
                   variant={isActive ? "default" : "outline"}
                   size="icon"
-                  className="h-9 w-9"
+                  className={cn(
+                    "h-9 w-9 transition-all duration-200",
+                    isActive
+                      ? "shadow-md transform scale-105"
+                      : "hover:bg-primary/10 hover:border-primary hover:scale-105"
+                  )}
+                  onClick={() => handleNavigate(page)}
+                  aria-current={isActive ? "page" : undefined}
                 >
-                  <Link
-                    to={getPageUrl(page)}
-                    aria-current={isActive ? "page" : undefined}
-                  >
-                    {page}
-                  </Link>
+                  {page}
                 </Button>
               )}
             </li>
@@ -162,24 +183,28 @@ export function Pagination({
               <Button
                 variant="outline"
                 size="icon"
-                className="h-9 w-9"
+                className="h-9 w-9 transition-all duration-200 hover:bg-primary/10 hover:border-primary hover:translate-x-0.5"
                 onClick={() => handleClick(currentPage + 1)}
                 aria-label="Next page"
               >
                 <FiChevronRight className="h-4 w-4" />
               </Button>
             ) : (
-              <Button asChild variant="outline" size="icon" className="h-9 w-9">
-                <Link to={getPageUrl(currentPage + 1)} aria-label="Next page">
-                  <FiChevronRight className="h-4 w-4" />
-                </Link>
+              <Button
+                variant="outline"
+                size="icon"
+                className="h-9 w-9 transition-all duration-200 hover:bg-primary/10 hover:border-primary hover:translate-x-0.5"
+                onClick={() => handleNavigate(currentPage + 1)}
+                aria-label="Next page"
+              >
+                <FiChevronRight className="h-4 w-4" />
               </Button>
             )
           ) : (
             <Button
               variant="outline"
               size="icon"
-              className="h-9 w-9 opacity-50"
+              className="h-9 w-9 opacity-50 cursor-not-allowed"
               disabled
               aria-label="Next page"
             >
