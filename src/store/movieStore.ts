@@ -61,7 +61,7 @@ export const useMovieStore = create<MovieState>((set) => ({
     try {
       const response = await movieService.getMovieDetails(slug);
       set({
-        movieDetail: response.item,
+        movieDetail: response.movie,
         isDetailLoading: false
       });
     } catch (error) {
