@@ -179,7 +179,7 @@ export function Hero({ movie, isLoading = false }: HeroProps) {
               <div className="flex flex-wrap gap-4 mt-6">
                 <Button
                   size="lg"
-                  className="h-12 px-6 rounded-full gap-2 text-base font-medium group relative overflow-hidden"
+                  className="h-12 px-6 bg-white text-black rounded-full gap-2 text-base font-medium group relative overflow-hidden"
                 >
                   <span className="absolute inset-0 bg-gradient-to-r from-primary/80 to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                   <span className="relative z-10 flex items-center gap-2">

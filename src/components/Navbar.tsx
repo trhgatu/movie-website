@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FiMenu, FiX, FiSearch, FiSun, FiMoon, FiHome, FiFilm, FiTv, FiTrendingUp, FiGlobe } from "react-icons/fi";
-import { useThemeStore } from "../store/themeStore";
+import { FiMenu, FiX, FiSearch, FiHome, FiFilm, FiTv, FiTrendingUp, FiGlobe } from "react-icons/fi";
 import { cn } from "../lib/utils";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
@@ -12,11 +11,9 @@ export function Navbar() {
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const { mode, setMode } = useThemeStore();
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Close menu when route changes
   useEffect(() => {
     setIsMenuOpen(false);
     setIsSearchVisible(false);
@@ -117,16 +114,6 @@ export function Navbar() {
 
             {/* Actions */}
             <div className="flex items-center gap-3">
-              {/* New Releases Badge - Small Attention Grabber */}
-              <Badge
-                variant="default"
-                className="hidden md:flex items-center gap-1 px-3 py-1 bg-primary/90 hover:bg-primary cursor-pointer animate-pulse"
-                onClick={() => navigate('/category/phim-moi')}
-              >
-                New
-              </Badge>
-
-              {/* Search Toggle */}
               <Button
                 variant="ghost"
                 size="icon"
@@ -139,23 +126,6 @@ export function Navbar() {
               >
                 <FiSearch className="h-5 w-5" />
               </Button>
-
-              {/* Theme Toggle */}
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setMode(mode === "dark" ? "light" : "dark")}
-                aria-label="Toggle theme"
-                className="rounded-full h-10 w-10 hover:bg-primary/10 hover:text-primary"
-              >
-                {mode === "dark" ? (
-                  <FiSun className="h-5 w-5" />
-                ) : (
-                  <FiMoon className="h-5 w-5" />
-                )}
-              </Button>
-
-              {/* Mobile Menu Toggle */}
               <Button
                 variant="ghost"
                 size="icon"

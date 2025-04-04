@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { FiSearch, FiX, FiFilm, FiTrendingUp, FiClock, FiFilter } from "react-icons/fi";
 import { Movie, movieService } from "../lib/api/movieService";
@@ -6,7 +6,6 @@ import { MovieGrid } from "../components/MovieGrid";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
 
-// Popular search suggestions
 const POPULAR_SEARCHES = [
   "Action", "Comedy", "Thriller", "Romance",
   "Marvel", "DC", "Anime", "K-Drama"
@@ -34,13 +33,6 @@ export function SearchPage() {
     }
   }, []);
 
-  // Save a search term to recent searches
-  const saveSearch = useCallback((term: string) => {
-    const updatedSearches = [term, ...recentSearches.filter(s => s !== term)].slice(0, 5);
-    setRecentSearches(updatedSearches);
-    localStorage.setItem('recentSearches', JSON.stringify(updatedSearches));
-  }, [recentSearches]);
-
   // Perform search when query parameter changes
   useEffect(() => {
     if (!query.trim()) {
@@ -55,7 +47,14 @@ export function SearchPage() {
         const response = await movieService.searchMovies(query);
         setMovies(response.items);
         setHasSearched(true);
-        saveSearch(query);
+
+        // Save to recent searches
+        setRecentSearches(prev => {
+          const updated = [query, ...prev.filter(s => s !== query)].slice(0, 5);
+          localStorage.setItem('recentSearches', JSON.stringify(updated));
+          return updated;
+        });
+
       } catch (error) {
         console.error("Error searching movies:", error);
       } finally {
@@ -64,7 +63,7 @@ export function SearchPage() {
     };
 
     performSearch();
-  }, [query, saveSearch]);
+  }, [query]);
 
   // Handle search form submission
   const handleSearch = (e: React.FormEvent) => {

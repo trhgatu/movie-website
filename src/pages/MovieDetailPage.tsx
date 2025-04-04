@@ -21,8 +21,6 @@ export function MovieDetailPage() {
         if (slug) {
           const data = await movieService.getMovieDetails(slug);
           setMovie(data.movie);
-
-          // Select first server and first episode by default
           if (data.movie.episodes && data.movie.episodes.length > 0) {
             setSelectedServer(0);
             if (data.movie.episodes[0].items && data.movie.episodes[0].items.length > 0) {
@@ -168,7 +166,7 @@ export function MovieDetailPage() {
             <div className="max-w-3xl backdrop-blur-sm bg-black/20 p-8 rounded-3xl border border-white/5 shadow-xl animate-fade-in">
               {/* Movie title with animated underline */}
               <div className="relative mb-3">
-                <h1 className="text-4xl font-extrabold tracking-tight text-white md:text-5xl lg:text-6xl drop-shadow-lg"
+                <h1 className="text-3xl font-extrabold tracking-tight text-white md:text-3xl lg:text-4xl drop-shadow-lg"
                     style={{ textShadow: "0 2px 10px rgba(0,0,0,0.5)" }}>
                   {movie.name}
                 </h1>
