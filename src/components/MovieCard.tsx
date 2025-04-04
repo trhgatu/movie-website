@@ -22,18 +22,12 @@ export function MovieCard({ movie, className }: MovieCardProps) {
     navigate(`/movie/${slug}`);
   };
 
-  // Find the first category group that has items (if any)
   const firstCategory = movie.category ?
     Object.values(movie.category).find(cat => cat.list && cat.list.length > 0) : null;
 
-  // Get year from category or use property directly
   const yearCategory = movie.category ?
     Object.values(movie.category).find(cat => cat.group?.name === "Năm") : null;
   const movieYear = yearCategory?.list[0]?.name || movie.year || "";
-
-  // Make sure we have a valid image URL
-  const hasValidThumbUrl = movie.thumb_url && movie.thumb_url.trim() !== '';
-  const imageUrl = hasValidThumbUrl ? movie.thumb_url : '/placeholder-poster.svg';
 
   return (
     <div
@@ -49,17 +43,16 @@ export function MovieCard({ movie, className }: MovieCardProps) {
       <Link to={`/movie/${movie.slug}`} className="block h-full w-full">
         <div className="relative aspect-[2/3] w-full overflow-hidden rounded-xl">
           <div
-            className={`absolute inset-0 bg-cover bg-center transition-all duration-500 ${
-              isLoaded ? 'opacity-100 blur-0' : 'opacity-0 blur-md'
-            }`}
-            style={{ backgroundImage: `url(${imageError ? '/placeholder-image.svg' : imageUrl})` }}
+            className={`absolute inset-0 bg-cover bg-center transition-all duration-500 ${isLoaded ? 'opacity-100 blur-0' : 'opacity-0 blur-md'
+              }`}
+            style={{ backgroundImage: `url(${imageError ? '/placeholder-image.svg' : movie.thumb_url})` }}
           ></div>
           {!isLoaded && !imageError && (
             <div className="absolute inset-0 animate-pulse bg-muted/50"></div>
           )}
           {!imageError && (
             <img
-              src={imageUrl}
+              src={movie.thumb_url}
               alt={movie.name}
               className={cn(
                 "h-full w-full object-cover transition-all duration-500",

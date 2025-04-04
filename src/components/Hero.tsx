@@ -27,16 +27,14 @@ export function Hero({ movie, isLoading = false }: HeroProps) {
 
   const displayMovie = movie || placeholderMovie;
 
-  // Get poster URL or fallback placeholder
-  const posterUrl = displayMovie.poster_url || displayMovie.thumb_url || "";
-  const hasValidUrl = posterUrl.trim().length > 0;
+  const posterUrlRaw = displayMovie.poster_url ?? displayMovie.thumb_url;
+  const posterUrl = typeof posterUrlRaw === "string" ? posterUrlRaw.trim() : "";
+  const hasValidUrl = posterUrl.length > 0;
+
   const backgroundImage = hasValidUrl ? `url(${posterUrl})` : 'url(/placeholder-image.svg)';
 
-  // Find categories to display
   const getCategories = () => {
     if (!displayMovie.category) return [];
-
-    // Check for array-style categories first (older code)
     if (Array.isArray(displayMovie.category)) {
       return displayMovie.category.slice(0, 3);
     }
@@ -122,7 +120,7 @@ export function Hero({ movie, isLoading = false }: HeroProps) {
               {/* Movie title with animated underline and 3D effect */}
               <div className="relative">
                 <h1 className="text-3xl font-extrabold leading-tight tracking-tighter text-white md:text-4xl lg:text-5xl drop-shadow-lg"
-                    style={{ textShadow: "0 2px 10px rgba(0,0,0,0.5)" }}>
+                  style={{ textShadow: "0 2px 10px rgba(0,0,0,0.5)" }}>
                   {displayMovie.name}
                 </h1>
                 <div className="absolute -bottom-3 left-0 h-1 w-32 bg-gradient-to-r from-primary to-primary/0 rounded-full animate-pulse"></div>

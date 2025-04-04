@@ -71,8 +71,8 @@ export interface Movie {
   name: string;
   original_name: string;
   slug: string;
-  thumb_url: string;
-  poster_url: string;
+  thumb_url?: string;
+  poster_url?: string;
   year?: number;
   category?: Record<string, CategoryGroup>;
   type?: string;
@@ -129,10 +129,7 @@ export interface SEO {
   description: string;
   keywords: string;
 }
-
-// Utility function to convert movie items from API to our Movie type
 const mapApiItemToMovie = (item: ApiResponseItem): Movie => {
-  // Convert categories to the required structure if available
   const categoryData: Record<string, CategoryGroup> = {};
 
   if (item.language) {
@@ -148,8 +145,6 @@ const mapApiItemToMovie = (item: ApiResponseItem): Movie => {
       }))
     };
   }
-
-  // Extract year from time string if available
   let year = undefined;
   if (item.time) {
     const yearMatch = item.time.match(/\d{4}/);
@@ -185,12 +180,9 @@ const mapApiItemToMovie = (item: ApiResponseItem): Movie => {
 };
 
 export const movieService = {
-  // Get newly updated movies
   getNewMovies: async (page = 1) => {
     const response = await apiClient.get<ApiResponseData>(`/films/phim-moi-cap-nhat?page=${page}`);
     const data = response.data;
-
-    // Map API response items to our Movie interface
     const mappedMovies = data.items.map(mapApiItemToMovie);
 
     return {
@@ -207,12 +199,10 @@ export const movieService = {
     };
   },
 
-  // Get movies by category
   getMoviesByCategory: async (slug: string, page = 1) => {
     const response = await apiClient.get<ApiResponseData>(`/films/danh-sach/${slug}?page=${page}`);
     const data = response.data;
 
-    // Map API response items to our Movie interface
     const mappedMovies = data.items.map(mapApiItemToMovie);
 
     return {
@@ -229,18 +219,16 @@ export const movieService = {
     };
   },
 
-  // Get movie details and episodes
+
   getMovieDetails: async (slug: string) => {
     const response = await apiClient.get<MovieDetailResponse>(`/film/${slug}`);
     return response.data;
   },
 
-  // Get movies by genre
   getMoviesByGenre: async (slug: string, page = 1) => {
     const response = await apiClient.get<ApiResponseData>(`/films/the-loai/${slug}?page=${page}`);
     const data = response.data;
 
-    // Map API response items to our Movie interface
     const mappedMovies = data.items.map(mapApiItemToMovie);
 
     return {
@@ -257,12 +245,10 @@ export const movieService = {
     };
   },
 
-  // Get movies by country
+
   getMoviesByCountry: async (slug: string, page = 1) => {
     const response = await apiClient.get<ApiResponseData>(`/films/quoc-gia/${slug}?page=${page}`);
     const data = response.data;
-
-    // Map API response items to our Movie interface
     const mappedMovies = data.items.map(mapApiItemToMovie);
 
     return {
@@ -279,12 +265,9 @@ export const movieService = {
     };
   },
 
-  // Get movies by release year
   getMoviesByYear: async (year: string, page = 1) => {
     const response = await apiClient.get<ApiResponseData>(`/films/nam-phat-hanh/${year}?page=${page}`);
     const data = response.data;
-
-    // Map API response items to our Movie interface
     const mappedMovies = data.items.map(mapApiItemToMovie);
 
     return {
