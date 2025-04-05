@@ -32,7 +32,7 @@ export function MovieCard({ movie, className }: MovieCardProps) {
   return (
     <div
       className={cn(
-        "group relative overflow-hidden rounded-xl bg-background shadow-md transition-all duration-500",
+        "group relative overflow-hidden rounded-md md:rounded-xl bg-background shadow-md transition-all duration-500",
         isHovered ? "scale-[1.05] z-10 shadow-xl" : "hover:shadow-lg",
         className
       )}
@@ -41,7 +41,7 @@ export function MovieCard({ movie, className }: MovieCardProps) {
       onClick={() => movie.slug && handleMovieClick(movie.slug)}
     >
       <Link to={`/movie/${movie.slug}`} className="block h-full w-full">
-        <div className="relative aspect-[2/3] w-full overflow-hidden rounded-xl">
+        <div className="relative aspect-[2/3] w-full overflow-hidden rounded-md md:rounded-xl">
           <div
             className={`absolute inset-0 bg-cover bg-center transition-all duration-500 ${isLoaded ? 'opacity-100 blur-0' : 'opacity-0 blur-md'
               }`}
@@ -79,22 +79,22 @@ export function MovieCard({ movie, className }: MovieCardProps) {
 
           {/* Quality badge */}
           {movie.chieurap && (
-            <Badge variant="secondary" className="absolute right-2 top-2 bg-primary text-primary-foreground">
-              <FiAward className="h-3 w-3 mr-1" />
+            <Badge variant="secondary" className="absolute right-1.5 md:right-2 top-1.5 md:top-2 px-1 md:px-1.5 py-0 md:py-0.5 text-[8px] md:text-xs bg-primary text-primary-foreground">
+              <FiAward className="h-2.5 w-2.5 md:h-3 md:w-3 mr-0.5 md:mr-1" />
               PREMIUM
             </Badge>
           )}
 
           {/* Episode count badge */}
           {movie.total_episodes && movie.total_episodes > 1 && (
-            <Badge variant="outline" className="absolute left-2 top-2 bg-black/50 text-white border-none backdrop-blur-sm">
-              {movie.total_episodes} Episodes
+            <Badge variant="outline" className="absolute left-1.5 md:left-2 top-1.5 md:top-2 px-1 md:px-1.5 py-0 md:py-0.5 text-[8px] md:text-xs bg-black/50 text-white border-none backdrop-blur-sm">
+              {movie.total_episodes} EP
             </Badge>
           )}
 
           {/* Movie year */}
           {movieYear && !movie.total_episodes && (
-            <Badge variant="outline" className="absolute left-2 top-2 bg-black/50 text-white border-none backdrop-blur-sm">
+            <Badge variant="outline" className="absolute left-1.5 md:left-2 top-1.5 md:top-2 px-1 md:px-1.5 py-0 md:py-0.5 text-[8px] md:text-xs bg-black/50 text-white border-none backdrop-blur-sm">
               {movieYear}
             </Badge>
           )}
@@ -102,35 +102,35 @@ export function MovieCard({ movie, className }: MovieCardProps) {
           {/* Hover overlay with actions */}
           <div
             className={cn(
-              "absolute inset-0 flex flex-col justify-end p-4 text-white",
+              "absolute inset-0 flex flex-col justify-end p-2 md:p-4 text-white",
               isHovered ? "opacity-100" : "opacity-0",
               "transition-opacity duration-300"
             )}
           >
             {isHovered && (
-              <div className="flex flex-col gap-4 transform transition-all duration-300 animate-slide-up">
-                <h3 className="font-bold text-lg leading-tight">
+              <div className="flex flex-col gap-2 md:gap-4 transform transition-all duration-300 animate-slide-up">
+                <h3 className="font-bold text-sm md:text-lg leading-tight">
                   {truncateText(movie.name, 20)}
                 </h3>
 
-                <div className="flex gap-2">
-                  <Button size="sm" variant="default" className="h-8 px-3 rounded-full">
-                    <FiPlay className="h-3.5 w-3.5 mr-1" /> Play
+                <div className="flex gap-1.5 md:gap-2">
+                  <Button size="sm" variant="default" className="h-6 md:h-8 px-2 md:px-3 text-xs rounded-full">
+                    <FiPlay className="h-3 w-3 md:h-3.5 md:w-3.5 mr-1" /> Play
                   </Button>
-                  <Button size="sm" variant="outline" className="h-8 px-3 rounded-full bg-white/10 border-none hover:bg-white/20">
-                    <FiInfo className="h-3.5 w-3.5 mr-1" /> Info
+                  <Button size="sm" variant="outline" className="h-6 md:h-8 px-2 md:px-3 text-xs rounded-full bg-white/10 border-none hover:bg-white/20">
+                    <FiInfo className="h-3 w-3 md:h-3.5 md:w-3.5 mr-1" /> Info
                   </Button>
                 </div>
 
-                <div className="flex flex-wrap gap-1 mt-1">
+                <div className="flex flex-wrap gap-1 mt-0.5 md:mt-1">
                   {movie.quality && (
-                    <Badge variant="outline" className="bg-black/20 text-white border-none">
+                    <Badge variant="outline" className="text-[8px] md:text-xs bg-black/20 text-white border-none">
                       {movie.quality}
                     </Badge>
                   )}
 
                   {movie.language && (
-                    <Badge variant="outline" className="bg-black/20 text-white border-none">
+                    <Badge variant="outline" className="text-[8px] md:text-xs bg-black/20 text-white border-none">
                       {movie.language}
                     </Badge>
                   )}
@@ -142,33 +142,33 @@ export function MovieCard({ movie, className }: MovieCardProps) {
 
         {/* Movie info (only visible when not hovered) */}
         <div className={cn(
-          "p-3 transition-opacity duration-300",
+          "p-2 md:p-3 transition-opacity duration-300",
           isHovered ? "opacity-0" : "opacity-100"
         )}>
-          <h3 className="font-semibold leading-tight group-hover:text-primary transition-colors line-clamp-1">
+          <h3 className="text-sm md:text-base font-semibold leading-tight group-hover:text-primary transition-colors line-clamp-1">
             {movie.name}
           </h3>
-          <p className="text-xs text-muted-foreground mt-1 line-clamp-1">
+          <p className="text-[10px] md:text-xs text-muted-foreground mt-0.5 md:mt-1 line-clamp-1">
             {movie.original_name}
           </p>
 
           {/* Rating info */}
-          <div className="flex items-center mt-2 text-xs text-amber-500">
-            <FiStar className="h-3.5 w-3.5 fill-current mr-1" />
+          <div className="flex items-center mt-1 md:mt-2 text-[10px] md:text-xs text-amber-500">
+            <FiStar className="h-3 w-3 md:h-3.5 md:w-3.5 fill-current mr-0.5 md:mr-1" />
             <span>9.2</span>
-            <span className="text-muted-foreground ml-1.5">{movie.time}</span>
+            <span className="text-muted-foreground ml-1 md:ml-1.5 text-[8px] md:text-[10px]">{movie.time}</span>
           </div>
 
           {/* Categories */}
           {firstCategory && firstCategory.list.length > 0 && (
-            <div className="mt-2 flex flex-wrap gap-1">
+            <div className="mt-1 md:mt-2 flex flex-wrap gap-0.5 md:gap-1">
               {firstCategory.list.slice(0, 2).map((item) => (
-                <Badge key={item.id} variant="secondary" className="px-1.5 py-0 text-[10px] font-normal">
+                <Badge key={item.id} variant="secondary" className="px-1 md:px-1.5 py-0 text-[8px] md:text-[10px] font-normal">
                   {item.name}
                 </Badge>
               ))}
               {firstCategory.list.length > 2 && (
-                <Badge variant="outline" className="px-1.5 py-0 text-[10px] font-normal">
+                <Badge variant="outline" className="px-1 md:px-1.5 py-0 text-[8px] md:text-[10px] font-normal">
                   +{firstCategory.list.length - 2}
                 </Badge>
               )}

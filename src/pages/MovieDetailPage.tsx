@@ -66,10 +66,10 @@ export function MovieDetailPage() {
 
   if (isLoading) {
     return (
-      <div className="container mx-auto min-h-screen px-4 py-20">
-        <div className="flex flex-col items-center justify-center">
-          <div className="h-20 w-20 animate-spin rounded-full border-4 border-primary border-t-transparent"></div>
-          <p className="mt-4 text-muted-foreground">Loading movie details...</p>
+      <div className="container mx-auto min-h-screen px-3 md:px-4 pt-16 md:pt-20 pb-8 md:pb-12">
+        <div className="flex flex-col items-center justify-center pt-12 md:pt-20">
+          <div className="h-16 w-16 md:h-20 md:w-20 animate-spin rounded-full border-3 md:border-4 border-primary border-t-transparent"></div>
+          <p className="mt-4 text-sm md:text-base text-muted-foreground">Loading movie details...</p>
         </div>
       </div>
     );
@@ -77,13 +77,13 @@ export function MovieDetailPage() {
 
   if (!movie) {
     return (
-      <div className="container mx-auto min-h-screen px-4 py-20">
-        <div className="flex flex-col items-center justify-center">
-          <h1 className="text-3xl font-bold">Movie Not Found</h1>
-          <p className="mt-4 text-muted-foreground">
+      <div className="container mx-auto min-h-screen px-3 md:px-4 pt-16 md:pt-20 pb-8 md:pb-12">
+        <div className="flex flex-col items-center justify-center pt-8 md:pt-20">
+          <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">Movie Not Found</h1>
+          <p className="mt-4 text-sm md:text-base text-muted-foreground text-center max-w-md">
             The movie you're looking for doesn't exist or has been removed.
           </p>
-          <Button className="mt-8">
+          <Button className="mt-6 md:mt-8">
             <Link to="/">Go Back Home</Link>
           </Button>
         </div>
@@ -98,7 +98,7 @@ export function MovieDetailPage() {
     <div className="min-h-screen">
       {/* Movie Hero Section */}
       <div
-        className="relative min-h-[90vh] w-full overflow-hidden bg-cover bg-center pt-20"
+        className="relative min-h-[70vh] md:min-h-[80vh] lg:min-h-[90vh] w-full overflow-hidden bg-cover bg-center pt-16 md:pt-20"
         style={{
           backgroundImage: `url(${movie.poster_url || movie.thumb_url})`,
         }}
@@ -113,10 +113,10 @@ export function MovieDetailPage() {
           }}
         ></div>
 
-        <div className="container relative z-10 mx-auto flex min-h-full items-center px-4 py-32">
-          <div className="flex flex-col md:flex-row md:gap-12">
+        <div className="container relative z-10 mx-auto flex min-h-full items-center px-3 md:px-4 py-8 md:py-16 lg:py-24">
+          <div className="flex flex-col md:flex-row md:gap-8 lg:gap-12">
             {/* Movie Poster with floating effect */}
-            <div className="mb-8 w-72 md:w-80 shrink-0 transform hover:translate-y-[-5px] transition-all duration-500 md:mb-0">
+            <div className="mx-auto md:mx-0 mb-6 md:mb-8 w-56 sm:w-64 md:w-72 lg:w-80 shrink-0 transform hover:translate-y-[-5px] transition-all duration-500">
               <div className="relative group">
                 <div className="absolute -inset-1 bg-gradient-to-r from-primary via-primary/50 to-purple-600 rounded-xl blur-md opacity-30 group-hover:opacity-60 transition duration-500"></div>
                 <div className="relative overflow-hidden rounded-xl shadow-2xl">
@@ -128,8 +128,8 @@ export function MovieDetailPage() {
 
                   {/* Quality badge */}
                   {movie.quality && (
-                    <div className="absolute top-3 right-3">
-                      <Badge variant="default" className="bg-primary/90 shadow-lg">
+                    <div className="absolute top-2 md:top-3 right-2 md:right-3">
+                      <Badge variant="default" className="text-xs bg-primary/90 shadow-lg">
                         {movie.quality}
                       </Badge>
                     </div>
@@ -137,8 +137,8 @@ export function MovieDetailPage() {
 
                   {/* Play overlay on hover */}
                   <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="h-16 w-16 rounded-full bg-primary/80 flex items-center justify-center transform scale-90 group-hover:scale-100 transition-transform duration-300">
-                      <FiPlay className="h-8 w-8 text-white" />
+                    <div className="h-12 w-12 md:h-16 md:w-16 rounded-full bg-primary/80 flex items-center justify-center transform scale-90 group-hover:scale-100 transition-transform duration-300">
+                      <FiPlay className="h-6 w-6 md:h-8 md:w-8 text-white" />
                     </div>
                   </div>
                 </div>
@@ -148,7 +148,7 @@ export function MovieDetailPage() {
               {selectedEpisode && (
                 <Button
                   size="lg"
-                  className="mt-6 w-full gap-2 rounded-xl h-14 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary shadow-lg shadow-primary/20"
+                  className="mt-4 md:mt-6 w-full gap-2 rounded-xl h-10 md:h-12 lg:h-14 text-sm md:text-base bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary shadow-lg shadow-primary/20"
                   onClick={() => {
                     const element = document.getElementById('player-section');
                     if (element) {
@@ -156,32 +156,32 @@ export function MovieDetailPage() {
                     }
                   }}
                 >
-                  <FiPlay className="h-5 w-5" />
+                  <FiPlay className="h-4 w-4 md:h-5 md:w-5" />
                   Watch Now
                 </Button>
               )}
             </div>
 
             {/* Movie Info with glass effect */}
-            <div className="max-w-3xl backdrop-blur-sm bg-black/20 p-8 rounded-3xl border border-white/5 shadow-xl animate-fade-in">
+            <div className="max-w-3xl backdrop-blur-sm bg-black/20 p-4 md:p-6 lg:p-8 rounded-xl md:rounded-2xl lg:rounded-3xl border border-white/5 shadow-xl animate-fade-in mt-2 md:mt-0">
               {/* Movie title with animated underline */}
-              <div className="relative mb-3">
-                <h1 className="text-3xl font-extrabold tracking-tight text-white md:text-3xl lg:text-4xl drop-shadow-lg"
+              <div className="relative mb-2 md:mb-3">
+                <h1 className="text-xl md:text-2xl lg:text-4xl font-extrabold tracking-tight text-white drop-shadow-lg"
                     style={{ textShadow: "0 2px 10px rgba(0,0,0,0.5)" }}>
                   {movie.name}
                 </h1>
-                <div className="absolute -bottom-3 left-0 h-1 w-32 bg-gradient-to-r from-primary to-primary/0 rounded-full"></div>
+                <div className="absolute -bottom-2 md:-bottom-3 left-0 h-0.5 md:h-1 w-16 md:w-24 lg:w-32 bg-gradient-to-r from-primary to-primary/0 rounded-full"></div>
               </div>
 
-              <h2 className="mb-6 text-2xl text-gray-300 font-medium">{movie.original_name}</h2>
+              <h2 className="mb-3 md:mb-6 text-base md:text-xl lg:text-2xl text-gray-300 font-medium">{movie.original_name}</h2>
 
               {/* Categories with improved styling */}
-              <div className="mb-8 flex flex-wrap gap-2">
+              <div className="mb-4 md:mb-6 lg:mb-8 flex flex-wrap gap-1.5 md:gap-2">
                 {genres.map((genre) => (
                   <Link
                     key={genre.id}
                     to={`/genre/${genre.name.toLowerCase().replace(/\s+/g, "-")}`}
-                    className="rounded-full bg-primary/70 px-4 py-1.5 text-sm font-medium text-white backdrop-blur-sm hover:bg-primary transition-colors duration-200"
+                    className="rounded-full bg-primary/70 px-2 py-1 md:px-4 md:py-1.5 text-xs md:text-sm font-medium text-white backdrop-blur-sm hover:bg-primary transition-colors duration-200"
                   >
                     {genre.name}
                   </Link>
@@ -190,7 +190,7 @@ export function MovieDetailPage() {
                   <Link
                     key={country.id}
                     to={`/country/${country.name.toLowerCase().replace(/\s+/g, "-")}`}
-                    className="rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-white backdrop-blur-sm hover:bg-white/20 transition-colors duration-200"
+                    className="rounded-full bg-white/10 px-2 py-1 md:px-4 md:py-1.5 text-xs md:text-sm font-medium text-white backdrop-blur-sm hover:bg-white/20 transition-colors duration-200"
                   >
                     {country.name}
                   </Link>
@@ -198,64 +198,64 @@ export function MovieDetailPage() {
               </div>
 
               {/* Movie stats with cards layout */}
-              <div className="mb-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="flex items-center gap-3 rounded-xl bg-white/5 p-3 backdrop-blur-sm">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20">
-                    <FiClock className="h-5 w-5 text-primary" />
+              <div className="mb-4 md:mb-6 lg:mb-8 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-2 md:gap-4">
+                <div className="flex items-center gap-2 md:gap-3 rounded-lg md:rounded-xl bg-white/5 p-2 md:p-3 backdrop-blur-sm">
+                  <div className="flex h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-full bg-primary/20">
+                    <FiClock className="h-4 w-4 md:h-5 md:w-5 text-primary" />
                   </div>
                   <div>
-                    <div className="text-sm text-gray-400">Duration</div>
-                    <div className="text-white">{movie.time || "N/A"}</div>
+                    <div className="text-xs md:text-sm text-gray-400">Duration</div>
+                    <div className="text-sm md:text-base text-white">{movie.time || "N/A"}</div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 rounded-xl bg-white/5 p-3 backdrop-blur-sm">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20">
-                    <FiCalendar className="h-5 w-5 text-primary" />
+                <div className="flex items-center gap-2 md:gap-3 rounded-lg md:rounded-xl bg-white/5 p-2 md:p-3 backdrop-blur-sm">
+                  <div className="flex h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-full bg-primary/20">
+                    <FiCalendar className="h-4 w-4 md:h-5 md:w-5 text-primary" />
                   </div>
                   <div>
-                    <div className="text-sm text-gray-400">Episodes</div>
-                    <div className="text-white">{movie.current_episode}</div>
+                    <div className="text-xs md:text-sm text-gray-400">Episodes</div>
+                    <div className="text-sm md:text-base text-white">{movie.current_episode}</div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 rounded-xl bg-white/5 p-3 backdrop-blur-sm">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20">
-                    <FiFlag className="h-5 w-5 text-primary" />
+                <div className="flex items-center gap-2 md:gap-3 rounded-lg md:rounded-xl bg-white/5 p-2 md:p-3 backdrop-blur-sm">
+                  <div className="flex h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-full bg-primary/20">
+                    <FiFlag className="h-4 w-4 md:h-5 md:w-5 text-primary" />
                   </div>
                   <div>
-                    <div className="text-sm text-gray-400">Countries</div>
-                    <div className="text-white">{countries.map(c => c.name).join(", ") || "N/A"}</div>
+                    <div className="text-xs md:text-sm text-gray-400">Countries</div>
+                    <div className="text-sm md:text-base text-white line-clamp-1">{countries.map(c => c.name).join(", ") || "N/A"}</div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 rounded-xl bg-white/5 p-3 backdrop-blur-sm">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20">
-                    <FiUser className="h-5 w-5 text-primary" />
+                <div className="flex items-center gap-2 md:gap-3 rounded-lg md:rounded-xl bg-white/5 p-2 md:p-3 backdrop-blur-sm">
+                  <div className="flex h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-full bg-primary/20">
+                    <FiUser className="h-4 w-4 md:h-5 md:w-5 text-primary" />
                   </div>
                   <div>
-                    <div className="text-sm text-gray-400">Cast</div>
-                    <div className="text-white line-clamp-1">{movie.casts || "N/A"}</div>
+                    <div className="text-xs md:text-sm text-gray-400">Cast</div>
+                    <div className="text-sm md:text-base text-white line-clamp-1">{movie.casts || "N/A"}</div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 rounded-xl bg-white/5 p-3 backdrop-blur-sm">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20">
-                    <FiVideo className="h-5 w-5 text-primary" />
+                <div className="flex items-center gap-2 md:gap-3 rounded-lg md:rounded-xl bg-white/5 p-2 md:p-3 backdrop-blur-sm">
+                  <div className="flex h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-full bg-primary/20">
+                    <FiVideo className="h-4 w-4 md:h-5 md:w-5 text-primary" />
                   </div>
                   <div>
-                    <div className="text-sm text-gray-400">Director</div>
-                    <div className="text-white">{movie.director || "N/A"}</div>
+                    <div className="text-xs md:text-sm text-gray-400">Director</div>
+                    <div className="text-sm md:text-base text-white line-clamp-1">{movie.director || "N/A"}</div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 rounded-xl bg-white/5 p-3 backdrop-blur-sm">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20">
-                    <FiInfo className="h-5 w-5 text-primary" />
+                <div className="flex items-center gap-2 md:gap-3 rounded-lg md:rounded-xl bg-white/5 p-2 md:p-3 backdrop-blur-sm">
+                  <div className="flex h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-full bg-primary/20">
+                    <FiInfo className="h-4 w-4 md:h-5 md:w-5 text-primary" />
                   </div>
                   <div>
-                    <div className="text-sm text-gray-400">Language</div>
-                    <div className="text-white">{movie.language || "N/A"}</div>
+                    <div className="text-xs md:text-sm text-gray-400">Language</div>
+                    <div className="text-sm md:text-base text-white line-clamp-1">{movie.language || "N/A"}</div>
                   </div>
                 </div>
               </div>
@@ -264,28 +264,28 @@ export function MovieDetailPage() {
         </div>
 
         {/* Bottom gradient for smooth transition */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-16 md:h-24 lg:h-32 bg-gradient-to-t from-background to-transparent"></div>
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-3 md:px-4 py-6 md:py-8 lg:py-12">
         {/* Synopsis with prettier design */}
-        <div className="mb-16">
-          <div className="flex items-center gap-3 mb-6">
-            <h2 className="text-2xl font-bold">Synopsis</h2>
+        <div className="mb-8 md:mb-12 lg:mb-16">
+          <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4 lg:mb-6">
+            <h2 className="text-lg md:text-xl lg:text-2xl font-bold">Synopsis</h2>
             <div className="h-px flex-1 bg-gradient-to-r from-primary/50 to-transparent"></div>
           </div>
           <div
-            className="prose prose-invert max-w-none rounded-2xl bg-white/5 p-8 shadow-lg border border-white/5 backdrop-blur-sm"
+            className="prose prose-invert max-w-none prose-sm md:prose-base rounded-xl md:rounded-2xl bg-white/5 p-4 md:p-6 lg:p-8 shadow-lg border border-white/5 backdrop-blur-sm"
             dangerouslySetInnerHTML={{ __html: movie.description || movie.content || "" }}
           />
         </div>
 
         {/* Episodes */}
         {movie.episodes && movie.episodes.length > 0 && (
-          <div className="mb-16">
-            <div className="flex items-center gap-3 mb-6">
-              <h2 className="text-2xl font-bold">Watch {movie.name}</h2>
+          <div className="mb-8 md:mb-12 lg:mb-16">
+            <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4 lg:mb-6">
+              <h2 className="text-lg md:text-xl lg:text-2xl font-bold">Watch {movie.name}</h2>
               <div className="h-px flex-1 bg-gradient-to-r from-primary/50 to-transparent"></div>
             </div>
 
@@ -293,10 +293,10 @@ export function MovieDetailPage() {
             {movie.episodes.length > 1 && (
               <Tabs defaultValue={selectedServer.toString()}
                     onValueChange={(value: string) => setSelectedServer(parseInt(value))}
-                    className="mb-6">
-                <TabsList className="w-full md:w-auto p-1 bg-white/5 backdrop-blur-sm">
+                    className="mb-4 md:mb-6">
+                <TabsList className="w-full overflow-x-auto flex-nowrap md:w-auto p-0.5 md:p-1 bg-white/5 backdrop-blur-sm">
                   {movie.episodes.map((server, index) => (
-                    <TabsTrigger key={index} value={index.toString()} className="data-[state=active]:bg-primary">
+                    <TabsTrigger key={index} value={index.toString()} className="text-xs md:text-sm flex-1 md:flex-none data-[state=active]:bg-primary">
                       {server.server_name}
                     </TabsTrigger>
                   ))}
@@ -306,17 +306,17 @@ export function MovieDetailPage() {
 
             {/* Episode selection */}
             {movie.episodes[selectedServer]?.items.length > 1 && (
-              <div className="mb-8 bg-white/5 p-6 rounded-2xl backdrop-blur-sm border border-white/5">
-                <h3 className="mb-4 text-lg font-medium flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-primary"></span>
+              <div className="mb-6 md:mb-8 bg-white/5 p-3 md:p-4 lg:p-6 rounded-xl md:rounded-2xl backdrop-blur-sm border border-white/5">
+                <h3 className="mb-3 md:mb-4 text-base md:text-lg font-medium flex items-center gap-2">
+                  <span className="h-1.5 md:h-2 w-1.5 md:w-2 rounded-full bg-primary"></span>
                   Episodes
                 </h3>
-                <div className="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-10">
+                <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-8 lg:grid-cols-10 gap-1.5 md:gap-2">
                   {movie.episodes[selectedServer].items.map((episode) => (
                     <Button
                       key={episode.slug}
                       variant={selectedEpisode?.slug === episode.slug ? "default" : "outline"}
-                      className={`text-center transition-all ${selectedEpisode?.slug === episode.slug ? 'bg-primary hover:bg-primary/90' : 'hover:bg-white/10 border-white/10'}`}
+                      className={`text-xs md:text-sm h-8 md:h-9 px-1.5 md:px-3 py-0 text-center transition-all ${selectedEpisode?.slug === episode.slug ? 'bg-primary hover:bg-primary/90' : 'hover:bg-white/10 border-white/10'}`}
                       onClick={() => setSelectedEpisode(episode)}
                     >
                       {episode.name}
@@ -328,23 +328,25 @@ export function MovieDetailPage() {
 
             {/* Player section with improved UI */}
             {selectedEpisode && hasValidEmbedUrl && (
-              <div id="player-section" className="mb-16 scroll-mt-32">
-                <div className="flex flex-wrap justify-between items-center mb-4">
-                  <h3 className="text-xl font-semibold flex items-center gap-2">
-                    <span className="h-3 w-3 rounded-full bg-primary animate-pulse"></span>
-                    {movie.name} - {movie.episodes[selectedServer].server_name} - Episode {selectedEpisode.name}
+              <div id="player-section" className="mb-8 md:mb-12 lg:mb-16 scroll-mt-24 md:scroll-mt-32">
+                <div className="flex flex-wrap justify-between items-center mb-3 md:mb-4">
+                  <h3 className="text-base md:text-lg lg:text-xl font-semibold flex items-center gap-1.5 md:gap-2">
+                    <span className="h-2 md:h-3 w-2 md:w-3 rounded-full bg-primary animate-pulse"></span>
+                    <span className="line-clamp-1">
+                      {movie.name} - {movie.episodes[selectedServer].server_name} - Episode {selectedEpisode.name}
+                    </span>
                   </h3>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5 md:gap-2 mt-1 md:mt-0">
                     {movie.quality && (
-                      <Badge variant="outline" className="bg-black/30 border-white/10">{movie.quality}</Badge>
+                      <Badge variant="outline" className="text-xs bg-black/30 border-white/10">{movie.quality}</Badge>
                     )}
-                    <Badge variant="outline" className="bg-green-500/20 border-green-500/30 text-green-400">PLAYING</Badge>
+                    <Badge variant="outline" className="text-xs bg-green-500/20 border-green-500/30 text-green-400">PLAYING</Badge>
                   </div>
                 </div>
-                <div className="relative aspect-video w-full overflow-hidden rounded-2xl shadow-2xl border border-white/5 group">
+                <div className="relative aspect-video w-full overflow-hidden rounded-xl md:rounded-2xl shadow-2xl border border-white/5 group">
                   <div className="absolute inset-0 bg-black/20 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-center justify-center">
-                    <div className="w-16 h-16 rounded-full bg-primary/80 flex items-center justify-center transform scale-90 group-hover:scale-100 transition-transform duration-300">
-                      <FiPlay className="h-8 w-8 text-white" />
+                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-primary/80 flex items-center justify-center transform scale-90 group-hover:scale-100 transition-transform duration-300">
+                      <FiPlay className="h-6 w-6 md:h-8 md:w-8 text-white" />
                     </div>
                   </div>
                   <iframe
@@ -356,12 +358,12 @@ export function MovieDetailPage() {
                   ></iframe>
                 </div>
 
-                <div className="mt-4 flex flex-wrap items-center gap-4">
-                  <Button variant="ghost" size="sm" className="gap-2 bg-white/5 hover:bg-white/10">
-                    <FiPlay className="h-4 w-4" /> Resume
+                <div className="mt-3 md:mt-4 flex flex-wrap items-center gap-2 md:gap-4">
+                  <Button variant="ghost" size="sm" className="h-8 md:h-9 gap-1.5 md:gap-2 text-xs md:text-sm bg-white/5 hover:bg-white/10">
+                    <FiPlay className="h-3 w-3 md:h-4 md:w-4" /> Resume
                   </Button>
 
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-xs md:text-sm text-muted-foreground">
                     Enjoying {movie.name}? <Link to="#related" className="text-primary hover:underline">Find similar content</Link>
                   </p>
                 </div>
@@ -369,19 +371,19 @@ export function MovieDetailPage() {
             )}
 
             {selectedEpisode && !hasValidEmbedUrl && (
-              <div id="player-section" className="mb-16 scroll-mt-32">
-                <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-white/5 bg-gradient-to-br from-muted/50 to-black/50 flex items-center justify-center shadow-2xl">
-                  <div className="text-center px-8 py-10 rounded-2xl backdrop-blur-sm bg-black/30 max-w-lg">
-                    <FiPlay className="h-20 w-20 text-primary/50 mx-auto mb-6" />
-                    <h3 className="text-2xl font-semibold mb-4">Source Unavailable</h3>
-                    <p className="text-muted-foreground mb-6">
+              <div id="player-section" className="mb-8 md:mb-12 lg:mb-16 scroll-mt-24 md:scroll-mt-32">
+                <div className="relative aspect-video w-full overflow-hidden rounded-xl md:rounded-2xl border border-white/5 bg-gradient-to-br from-muted/50 to-black/50 flex items-center justify-center shadow-2xl">
+                  <div className="text-center px-4 md:px-8 py-6 md:py-10 rounded-xl md:rounded-2xl backdrop-blur-sm bg-black/30 max-w-xs md:max-w-lg">
+                    <FiPlay className="h-12 w-12 md:h-16 md:w-16 lg:h-20 lg:w-20 text-primary/50 mx-auto mb-3 md:mb-6" />
+                    <h3 className="text-lg md:text-xl lg:text-2xl font-semibold mb-2 md:mb-4">Source Unavailable</h3>
+                    <p className="text-xs md:text-sm text-muted-foreground mb-4 md:mb-6">
                       This content is currently unavailable. This could be due to regional restrictions or temporary service issues.
                     </p>
-                    <div className="flex flex-wrap gap-3 justify-center">
-                      <Button variant="outline" onClick={() => setSelectedServer((selectedServer + 1) % movie.episodes.length)} className="border-white/10 bg-white/5 hover:bg-white/10">
+                    <div className="flex flex-wrap gap-2 md:gap-3 justify-center">
+                      <Button variant="outline" size="sm" onClick={() => setSelectedServer((selectedServer + 1) % movie.episodes.length)} className="h-8 md:h-10 text-xs md:text-sm border-white/10 bg-white/5 hover:bg-white/10">
                         Try Another Server
                       </Button>
-                      <Button variant="ghost" className="hover:bg-white/10">
+                      <Button variant="ghost" size="sm" className="h-8 md:h-10 text-xs md:text-sm hover:bg-white/10">
                         Report Issue
                       </Button>
                     </div>
@@ -394,9 +396,9 @@ export function MovieDetailPage() {
 
         {/* Recommendations with improved layout */}
         {movie.recommended && movie.recommended.length > 0 && (
-          <div className="mb-12">
-            <div className="flex items-center gap-3 mb-6">
-              <h2 className="text-2xl font-bold">You May Also Like</h2>
+          <div className="mb-6 md:mb-8 lg:mb-12">
+            <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4 lg:mb-6">
+              <h2 className="text-lg md:text-xl lg:text-2xl font-bold">You May Also Like</h2>
               <div className="h-px flex-1 bg-gradient-to-r from-primary/50 to-transparent"></div>
             </div>
             <MovieGrid movies={movie.recommended} />

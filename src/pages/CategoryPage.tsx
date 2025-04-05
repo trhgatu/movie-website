@@ -154,11 +154,14 @@ export function CategoryPage() {
   };
 
   return (
-    <div className="container mx-auto min-h-screen px-4 py-20">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold">{categoryTitle}</h1>
-        <p className="text-muted-foreground">
-          {!isLoading && `Showing ${movies.length} results`}
+    <div className="container mx-auto min-h-screen px-3 md:px-4 pt-16 md:pt-20 lg:pt-24 pb-10 md:pb-16">
+      <div className="mb-4 md:mb-6 lg:mb-8">
+        <div className="relative mb-2">
+          <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">{categoryTitle}</h1>
+          <div className="absolute -bottom-1 left-0 h-0.5 md:h-1 w-12 md:w-16 bg-gradient-to-r from-primary to-primary/20 rounded-full"></div>
+        </div>
+        <p className="text-sm md:text-base text-muted-foreground">
+          {!isLoading && `Showing ${movies.length} ${movies.length === 1 ? 'result' : 'results'}`}
         </p>
       </div>
 
@@ -166,13 +169,15 @@ export function CategoryPage() {
         movies={movies}
         isLoading={isLoading}
         emptyMessage={`No movies found in this ${type}.`}
-        className="mb-8"
+        className="mb-6 md:mb-8"
       />
 
-      <Pagination
-        currentPage={pagination.currentPage}
-        totalPages={pagination.totalPages}
-      />
+      <div className="mt-6 md:mt-8">
+        <Pagination
+          currentPage={pagination.currentPage}
+          totalPages={pagination.totalPages}
+        />
+      </div>
     </div>
   );
 }

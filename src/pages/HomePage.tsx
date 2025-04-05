@@ -67,9 +67,9 @@ export function HomePage() {
 
   // ViewAll button component for grid sections
   const ViewAllAction = ({ to }: { to: string }) => (
-    <Button variant="ghost" size="sm">
+    <Button variant="ghost" size="sm" className="text-xs md:text-sm">
       <Link to={to} className="flex items-center gap-1">
-        View All <FiChevronRight className="h-4 w-4" />
+        View All <FiChevronRight className="h-3 w-3 md:h-4 md:w-4" />
       </Link>
     </Button>
   );
@@ -80,7 +80,7 @@ export function HomePage() {
       <Hero movie={featuredMovie || undefined} isLoading={isLoading && !featuredMovie} />
 
       {/* Content Sections */}
-      <div className="container mx-auto px-4 py-12 space-y-12">
+      <div className="container mx-auto px-3 md:px-4 py-6 md:py-8 lg:py-12 space-y-8 md:space-y-10 lg:space-y-12">
         {/* New Releases */}
         <MovieGrid
           title="New Releases"
