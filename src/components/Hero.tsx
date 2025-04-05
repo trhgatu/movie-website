@@ -167,7 +167,7 @@ export function Hero({ movie, isLoading = false }: HeroProps) {
 
               {/* Description with custom style */}
               <div className="relative mt-2 hidden md:block">
-                <div className="absolute top-0 left-0 w-1 h-full bg-primary/30 rounded-full"></div>
+                <div className="absolute top-0 left-0 w-1 h-full bg-white/30 rounded-full"></div>
                 <p className="text-sm md:text-base lg:text-lg text-gray-200 max-w-2xl line-clamp-2 md:line-clamp-3 pl-4">
                   {displayMovie.description || "No description available."}
                 </p>
