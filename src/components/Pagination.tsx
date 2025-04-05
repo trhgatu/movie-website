@@ -163,7 +163,7 @@ export function Pagination({
                   className={cn(
                     "h-9 w-9 transition-all duration-200",
                     isActive
-                      ? "shadow-md transform scale-105"
+                      ? "shadow-md transform scale-105 bg-white text-black"
                       : "hover:bg-primary/10 hover:border-primary hover:scale-105"
                   )}
                   onClick={() => handleNavigate(page)}

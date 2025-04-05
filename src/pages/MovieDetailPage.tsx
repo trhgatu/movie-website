@@ -148,7 +148,7 @@ export function MovieDetailPage() {
               {selectedEpisode && (
                 <Button
                   size="lg"
-                  className="mt-4 md:mt-6 w-full gap-2 rounded-xl h-10 md:h-12 lg:h-14 text-sm md:text-base bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary shadow-lg shadow-primary/20"
+                  className="mt-4 md:mt-6 w-full gap-2 rounded-xl h-10 md:h-12 lg:h-14 text-sm md:text-base bg-white from-primary to-primary/80 hover:from-primary/90 hover:to-primary shadow-lg shadow-primary/20"
                   onClick={() => {
                     const element = document.getElementById('player-section');
                     if (element) {
@@ -156,8 +156,10 @@ export function MovieDetailPage() {
                     }
                   }}
                 >
-                  <FiPlay className="h-4 w-4 md:h-5 md:w-5" />
-                  Watch Now
+                  <FiPlay className="h-4 w-4 md:h-5 md:w-5 text-black" />
+                  <span className="text-black">
+                    Watch Now
+                  </span>
                 </Button>
               )}
             </div>
@@ -167,7 +169,7 @@ export function MovieDetailPage() {
               {/* Movie title with animated underline */}
               <div className="relative mb-2 md:mb-3">
                 <h1 className="text-xl md:text-2xl lg:text-4xl font-extrabold tracking-tight text-white drop-shadow-lg"
-                    style={{ textShadow: "0 2px 10px rgba(0,0,0,0.5)" }}>
+                  style={{ textShadow: "0 2px 10px rgba(0,0,0,0.5)" }}>
                   {movie.name}
                 </h1>
                 <div className="absolute -bottom-2 md:-bottom-3 left-0 h-0.5 md:h-1 w-16 md:w-24 lg:w-32 bg-gradient-to-r from-primary to-primary/0 rounded-full"></div>
@@ -292,8 +294,8 @@ export function MovieDetailPage() {
             {/* Server selection */}
             {movie.episodes.length > 1 && (
               <Tabs defaultValue={selectedServer.toString()}
-                    onValueChange={(value: string) => setSelectedServer(parseInt(value))}
-                    className="mb-4 md:mb-6">
+                onValueChange={(value: string) => setSelectedServer(parseInt(value))}
+                className="mb-4 md:mb-6">
                 <TabsList className="w-full overflow-x-auto flex-nowrap md:w-auto p-0.5 md:p-1 bg-white/5 backdrop-blur-sm">
                   {movie.episodes.map((server, index) => (
                     <TabsTrigger key={index} value={index.toString()} className="text-xs md:text-sm flex-1 md:flex-none data-[state=active]:bg-primary">
