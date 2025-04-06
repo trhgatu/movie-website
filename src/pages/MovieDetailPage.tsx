@@ -165,7 +165,7 @@ export function MovieDetailPage() {
             </div>
 
             {/* Movie Info with glass effect */}
-            <div className="max-w-3xl backdrop-blur-sm bg-black/20 p-4 md:p-6 lg:p-8 rounded-xl md:rounded-2xl lg:rounded-3xl border border-white/5 shadow-xl animate-fade-in mt-2 md:mt-0">
+            <div className="max-w-3xl p-4 md:p-6 lg:p-8 rounded-xl md:rounded-2xl lg:rounded-3xl animate-fade-in mt-2 md:mt-0">
               {/* Movie title with animated underline */}
               <div className="relative mb-2 md:mb-3">
                 <h1 className="text-xl md:text-2xl lg:text-4xl font-extrabold tracking-tight text-white drop-shadow-lg"
