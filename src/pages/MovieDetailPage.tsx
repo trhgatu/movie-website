@@ -318,7 +318,7 @@ export function MovieDetailPage() {
                     <Button
                       key={episode.slug}
                       variant={selectedEpisode?.slug === episode.slug ? "default" : "outline"}
-                      className={`text-xs md:text-sm h-8 md:h-9 px-1.5 md:px-3 py-0 text-center transition-all ${selectedEpisode?.slug === episode.slug ? 'bg-primary hover:bg-primary/90' : 'hover:bg-white/10 border-white/10'}`}
+                      className={`text-xs md:text-sm h-8 md:h-9 px-1.5 md:px-3 py-0 text-center transition-all ${selectedEpisode?.slug === episode.slug ? 'bg-white text-black hover:bg-black/90' : 'hover:bg-white/10 border-white/10'}`}
                       onClick={() => setSelectedEpisode(episode)}
                     >
                       {episode.name}
